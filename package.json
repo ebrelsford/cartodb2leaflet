@@ -1,0 +1,39 @@
+{
+  "name": "cartodb2leaflet",
+  "version": "0.0.1",
+  "description": "Convert CartoDB visualization to Leaflet",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "watch": "babel src/index.js --out-file index.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ebrelsford/cartodb2leaflet.git"
+  },
+  "keywords": [
+    "gis",
+    "map",
+    "cartocss",
+    "leaflet"
+  ],
+  "author": "Eric Brelsford <ebrelsford@gmail.com> (http://ebrelsford.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ebrelsford/cartodb2leaflet/issues"
+  },
+  "homepage": "https://github.com/ebrelsford/cartodb2leaflet#readme",
+  "dependencies": {
+    "async": "^1.5.0",
+    "cartocss2leaflet": "git+https://github.com/ebrelsford/cartocss2leaflet.git",
+    "commander": "^2.8.1",
+    "fs-extra": "^0.26.2",
+    "mustache": "^2.2.0",
+    "temp": "^0.8.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5"
+  }
+}
