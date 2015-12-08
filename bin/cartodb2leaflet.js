@@ -37,5 +37,6 @@ cdbExport.exportVis(url, program.dir, function (err) {
             return;
         }
         console.log('Done converting visualization to Leaflet');
+        process.exit(0);
     });
 });
