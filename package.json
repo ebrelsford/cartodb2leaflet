@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "watch": "babel src/index.js --out-file index.js --watch"
+    "watch": "babel src --out-dir . --watch"
   },
   "repository": {
     "type": "git",

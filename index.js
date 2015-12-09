@@ -80,14 +80,22 @@ function generateHtml(visJson, src, dest, callback) {
 }
 
 function generateJavaScript(visJson, src, dest, callback) {
-    _fsExtra2['default'].readFile('templates/index.js.hbs', function (err, data) {
-        if (err) {
+    var read = _fsExtra2['default'].createReadStream('cartodb2leaflet.js'),
+        write = _fsExtra2['default'].createWriteStream(_path2['default'].join(dest, 'index.js')),
+        callbackCalled = false;
+
+    function done(err) {
+        if (!callbackCalled) {
             callback(err);
-            return;
+            callbackCalled = true;
         }
-        var js = _mustache2['default'].render(data.toString(), visJson);
-        _fsExtra2['default'].writeFile(_path2['default'].join(dest, 'index.js'), js, callback);
-    });
+    }
+
+    read.on('error', done);
+    write.on('error', done);
+    write.on('close', done);
+
+    read.pipe(write);
 }
 
 function generateStyles(visJson, src, dest, callback) {

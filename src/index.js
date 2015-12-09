@@ -58,14 +58,22 @@ export function generateHtml(visJson, src, dest, callback) {
 }
 
 export function generateJavaScript(visJson, src, dest, callback) {
-    fs.readFile('templates/index.js.hbs', function (err, data) {
-        if (err) {
+    var read = fs.createReadStream('cartodb2leaflet.js'),
+        write = fs.createWriteStream(path.join(dest, 'index.js')),
+        callbackCalled = false;
+
+    function done(err) {
+        if (!callbackCalled) {
             callback(err);
-            return;
+            callbackCalled = true;
         }
-        var js = Mustache.render(data.toString(), visJson);
-        fs.writeFile(path.join(dest, 'index.js'), js, callback);
-    });
+    }
+
+    read.on('error', done);
+    write.on('error', done);
+    write.on('close', done);
+
+    read.pipe(write);
 }
 
 export function generateStyles(visJson, src, dest, callback) {
