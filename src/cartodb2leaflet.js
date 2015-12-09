@@ -35,9 +35,9 @@ function loadLayer(dataUrl, styleUrl) {
 
             styleRequest.onload = () => {
                 if (styleRequest.status >= 200 && styleRequest.status < 400) {
-                    var geojson = JSON.parse(request.responseText);
-                    var styleResponse = JSON.parse(styleRequest.responseText);
-                    var style;
+                    var geojson = JSON.parse(request.responseText),
+                        styleResponse = JSON.parse(styleRequest.responseText),
+                        style;
                     for (var key in styleResponse) {
                         if (styleResponse.hasOwnProperty(key)) {
                             style = styleResponse[key][0].style;
