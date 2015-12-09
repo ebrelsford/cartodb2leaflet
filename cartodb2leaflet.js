@@ -39,20 +39,23 @@ function loadLayer(dataUrl, styleUrl) {
                 if (styleRequest.status >= 200 && styleRequest.status < 400) {
                     var geojson = JSON.parse(request.responseText),
                         styleResponse = JSON.parse(styleRequest.responseText),
-                        style;
+                        style,
+                        geojsonOptions = {};;
                     for (var key in styleResponse) {
                         if (styleResponse.hasOwnProperty(key)) {
                             style = styleResponse[key][0].style;
                             break;
                         }
                     }
-                    L.geoJson(geojson, {
-                        // TODO only with points
-                        pointToLayer: function pointToLayer(feature, latlng) {
+                    geojsonOptions.style = style;
+
+                    if (geojson.features[0].geometry.type === 'Point') {
+                        geojsonOptions.pointToLayer = function (feature, latlng) {
                             return L.circleMarker(latlng);
-                        },
-                        style: style
-                    }).addTo(map);
+                        };
+                    }
+
+                    L.geoJson(geojson, geojsonOptions).addTo(map);
                 } else {
                     console.error('Could not load ', dataUrl);
                 }
