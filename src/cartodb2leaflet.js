@@ -15,7 +15,6 @@ function loadLayers(visJson) {
     visJson.layers.forEach((layer, layerIndex) => {
         if (layer.type !== 'layergroup') return;
         layer.options.layer_definition.layers.forEach((sublayer, sublayerIndex) => {
-            console.log(layerIndex, sublayerIndex);
             var base = 'layers/' + layerIndex + '/sublayers/' + sublayerIndex,
                 dataUrl = base + '/layer.geojson',
                 styleUrl = base + '/style.json';
@@ -26,7 +25,6 @@ function loadLayers(visJson) {
 }
 
 function loadLayer(dataUrl, styleUrl) {
-    console.log(dataUrl);
     var request = new XMLHttpRequest();
     request.open('GET', dataUrl, true);
 
@@ -46,7 +44,6 @@ function loadLayer(dataUrl, styleUrl) {
                             break;
                         }
                     }
-                    console.log(style);
                     L.geoJson(geojson, {
                         // TODO only with points
                         pointToLayer: (feature, latlng) => {
