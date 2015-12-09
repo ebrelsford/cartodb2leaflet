@@ -12,9 +12,9 @@ function onVisJson(visJson) {
 }
 
 function loadLayers(visJson) {
-    visJson.layers.forEach(function (layer, layerIndex) {
+    visJson.layers.forEach((layer, layerIndex) => {
         if (layer.type !== 'layergroup') return;
-        layer.options.layer_definition.layers.forEach(function (sublayer, sublayerIndex) {
+        layer.options.layer_definition.layers.forEach((sublayer, sublayerIndex) => {
             console.log(layerIndex, sublayerIndex);
             var base = 'layers/' + layerIndex + '/sublayers/' + sublayerIndex,
                 dataUrl = base + '/layer.geojson',
@@ -30,12 +30,12 @@ function loadLayer(dataUrl, styleUrl) {
     var request = new XMLHttpRequest();
     request.open('GET', dataUrl, true);
 
-    request.onload = function() {
+    request.onload = () => {
         if (request.status >= 200 && request.status < 400) {
             var styleRequest = new XMLHttpRequest();
             styleRequest.open('GET', styleUrl, true);
 
-            styleRequest.onload = function() {
+            styleRequest.onload = () => {
                 if (styleRequest.status >= 200 && styleRequest.status < 400) {
                     var geojson = JSON.parse(request.responseText);
                     var styleResponse = JSON.parse(styleRequest.responseText);
@@ -49,7 +49,7 @@ function loadLayer(dataUrl, styleUrl) {
                     console.log(style);
                     L.geoJson(geojson, {
                         // TODO only with points
-                        pointToLayer: function (feature, latlng) {
+                        pointToLayer: (feature, latlng) => {
                             return L.circleMarker(latlng);
                         },
                         style: style
@@ -60,7 +60,7 @@ function loadLayer(dataUrl, styleUrl) {
                 }
             };
 
-            styleRequest.onerror = function() {
+            styleRequest.onerror = () => {
                 console.error('Could not load', dataUrl);
             };
 
@@ -71,7 +71,7 @@ function loadLayer(dataUrl, styleUrl) {
         }
     };
 
-    request.onerror = function() {
+    request.onerror = () => {
         console.error('Could not load', dataUrl);
     };
 
@@ -82,7 +82,7 @@ function loadVisJson() {
     var request = new XMLHttpRequest();
     request.open('GET', 'viz.json', true);
 
-    request.onload = function() {
+    request.onload = () => {
         if (request.status >= 200 && request.status < 400) {
             visJson = JSON.parse(request.responseText);
             onVisJson(visJson);
@@ -92,7 +92,7 @@ function loadVisJson() {
         }
     };
 
-    request.onerror = function() {
+    request.onerror = () => {
         console.error('Could not load viz.json');
     };
 
