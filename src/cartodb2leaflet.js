@@ -38,7 +38,7 @@ function loadLayer(dataUrl, styleUrl) {
                     var geojson = JSON.parse(request.responseText),
                         styleResponse = JSON.parse(styleRequest.responseText),
                         style,
-                        geojsonOptions = {};;
+                        geojsonOptions = {};
                     for (var key in styleResponse) {
                         if (styleResponse.hasOwnProperty(key)) {
                             style = styleResponse[key][0].style;
