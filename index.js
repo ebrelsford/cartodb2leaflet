@@ -69,7 +69,7 @@ function generateFiles(src, dest, callback) {
 }
 
 function generateHtml(visJson, src, dest, callback) {
-    _fsExtra2['default'].readFile('templates/index.hbs', function (err, data) {
+    _fsExtra2['default'].readFile(_path2['default'].join(__dirname, 'templates/index.hbs'), function (err, data) {
         if (err) {
             callback(err);
             return;
@@ -80,7 +80,7 @@ function generateHtml(visJson, src, dest, callback) {
 }
 
 function generateJavaScript(visJson, src, dest, callback) {
-    var read = _fsExtra2['default'].createReadStream('cartodb2leaflet.js'),
+    var read = _fsExtra2['default'].createReadStream(_path2['default'].join(__dirname, 'cartodb2leaflet.js')),
         write = _fsExtra2['default'].createWriteStream(_path2['default'].join(dest, 'index.js')),
         callbackCalled = false;
 

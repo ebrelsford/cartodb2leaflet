@@ -47,7 +47,7 @@ export function generateFiles(src, dest, callback) {
 }
 
 export function generateHtml(visJson, src, dest, callback) {
-    fs.readFile('templates/index.hbs', function (err, data) {
+    fs.readFile(path.join(__dirname, 'templates/index.hbs'), function (err, data) {
         if (err) {
             callback(err);
             return;
@@ -58,7 +58,7 @@ export function generateHtml(visJson, src, dest, callback) {
 }
 
 export function generateJavaScript(visJson, src, dest, callback) {
-    var read = fs.createReadStream('cartodb2leaflet.js'),
+    var read = fs.createReadStream(path.join(__dirname, 'cartodb2leaflet.js')),
         write = fs.createWriteStream(path.join(dest, 'index.js')),
         callbackCalled = false;
 
