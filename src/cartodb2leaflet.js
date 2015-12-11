@@ -41,11 +41,10 @@ function loadLayer(dataUrl, styleUrl) {
                         geojsonOptions = {};
                     for (var key in styleResponse) {
                         if (styleResponse.hasOwnProperty(key)) {
-                            style = styleResponse[key][0].style;
+                            geojsonOptions.jsonStyle = styleResponse[key];
                             break;
                         }
                     }
-                    geojsonOptions.style = style;
 
                     if (geojson.features[0].geometry.type === 'Point') {
                         geojsonOptions.pointToLayer = (feature, latlng) => {

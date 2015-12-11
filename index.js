@@ -79,23 +79,14 @@ function generateHtml(visJson, src, dest, callback) {
     });
 }
 
-function generateJavaScript(visJson, src, dest, callback) {
-    var read = _fsExtra2['default'].createReadStream(_path2['default'].join(__dirname, 'cartodb2leaflet.js')),
-        write = _fsExtra2['default'].createWriteStream(_path2['default'].join(dest, 'index.js')),
-        callbackCalled = false;
-
-    function done(err) {
-        if (!callbackCalled) {
-            callback(err);
-            callbackCalled = true;
-        }
-    }
-
-    read.on('error', done);
-    write.on('error', done);
-    write.on('close', done);
-
-    read.pipe(write);
+function generateJavaScript(visJson, src, destDir, callback) {
+    var jsFiles = ['cartodb2leaflet.js', _path2['default'].join('node_modules', 'Leaflet.jsonstyles', 'src', 'leaflet.jsonstyles.js')];
+    _async2['default'].each(jsFiles, function (file, cb) {
+        var src = _path2['default'].join(__dirname, file),
+            filename = file.split(_path2['default'].sep).pop(),
+            dest = _path2['default'].join(destDir, filename);
+        _fsExtra2['default'].copy(src, dest, { replace: true }, cb);
+    }, callback);
 }
 
 function generateStyles(visJson, src, dest, callback) {

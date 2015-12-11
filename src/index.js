@@ -57,23 +57,17 @@ export function generateHtml(visJson, src, dest, callback) {
     });
 }
 
-export function generateJavaScript(visJson, src, dest, callback) {
-    var read = fs.createReadStream(path.join(__dirname, 'cartodb2leaflet.js')),
-        write = fs.createWriteStream(path.join(dest, 'index.js')),
-        callbackCalled = false;
-
-    function done(err) {
-        if (!callbackCalled) {
-            callback(err);
-            callbackCalled = true;
-        }
-    }
-
-    read.on('error', done);
-    write.on('error', done);
-    write.on('close', done);
-
-    read.pipe(write);
+export function generateJavaScript(visJson, src, destDir, callback) {
+    var jsFiles = [
+        'cartodb2leaflet.js',
+        path.join('node_modules', 'Leaflet.jsonstyles', 'src', 'leaflet.jsonstyles.js')
+    ];
+    async.each(jsFiles, (file, cb) => {
+        var src = path.join(__dirname, file),
+            filename = file.split(path.sep).pop(),
+            dest = path.join(destDir, filename);
+        fs.copy(src, dest, { replace: true }, cb);
+    }, callback);
 }
 
 export function generateStyles(visJson, src, dest, callback) {
