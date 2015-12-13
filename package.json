@@ -28,7 +28,7 @@
   "homepage": "https://github.com/ebrelsford/cartodb2leaflet#readme",
   "dependencies": {
     "async": "^1.5.0",
-    "cartocss2leaflet": "git+https://github.com/ebrelsford/cartocss2leaflet.git",
+    "cartocss2leaflet": "^0.1.0",
     "cartodb-export": "^0.2.0",
     "commander": "^2.8.1",
     "fs-extra": "^0.26.2",
