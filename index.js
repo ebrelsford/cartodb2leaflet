@@ -80,7 +80,7 @@ function generateHtml(visJson, src, dest, callback) {
 }
 
 function generateJavaScript(visJson, src, destDir, callback) {
-    var jsFiles = ['cartodb2leaflet.js', _path2['default'].join('node_modules', 'Leaflet.jsonstyles', 'src', 'leaflet.jsonstyles.js')];
+    var jsFiles = ['cartodb2leaflet.js', _path2['default'].join('node_modules', 'leaflet-jsonstyles', 'src', 'leaflet.jsonstyles.js')];
     _async2['default'].each(jsFiles, function (file, cb) {
         var src = _path2['default'].join(__dirname, file),
             filename = file.split(_path2['default'].sep).pop(),

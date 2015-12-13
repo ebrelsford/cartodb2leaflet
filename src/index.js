@@ -60,7 +60,7 @@ export function generateHtml(visJson, src, dest, callback) {
 export function generateJavaScript(visJson, src, destDir, callback) {
     var jsFiles = [
         'cartodb2leaflet.js',
-        path.join('node_modules', 'Leaflet.jsonstyles', 'src', 'leaflet.jsonstyles.js')
+        path.join('node_modules', 'leaflet-jsonstyles', 'src', 'leaflet.jsonstyles.js')
     ];
     async.each(jsFiles, (file, cb) => {
         var src = path.join(__dirname, file),
