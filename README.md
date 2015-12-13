@@ -20,11 +20,21 @@ Right now only basic SVG styles are supported (ie fill and stroke) as well as
 zoom-based styles.
 
 
+Install
+-------
+
+    npm install -g cartodb2leaflet
+
+or clone this repo and
+
+    npm install -g
+
+
 Usage
 -----
 
-You can use it as a module or as a command line script. To do the latter, clone
-this repo, `npm install -g` and invoke the script:
+You can use it as a module or as a command line script. To do the latter,
+install the module globally and invoke the script:
 
     cartodb2leaflet -d <output_directory> <viz_json_url>
 
