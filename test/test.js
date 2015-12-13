@@ -65,7 +65,7 @@ describe('generateJavaScript', function () {
                 var visJson = JSON.parse(data);
                 c2l.generateJavaScript(visJson, src, dirPath, function (err) {
                     if (err) return done(err);
-                    fs.stat(path.join(dirPath, 'index.js'), function (err, stats) {
+                    fs.stat(path.join(dirPath, 'cartodb2leaflet.js'), function (err, stats) {
                         // Assert file exists
                         assert.isNull(err);
                         done();
@@ -83,8 +83,7 @@ describe('generateStyles', function () {
             var src = 'test/files/export0';
             fs.readFile(path.join(src, 'viz.json'), function (err, data) {
                 if (err) {
-                    callback(err);
-                    return;
+                    return done(err);
                 }
                 var visJson = JSON.parse(data);
                 c2l.generateStyles(visJson, src, dirPath, function (err) {
