@@ -32,7 +32,7 @@
     "cartodb-export": "^0.2.0",
     "commander": "^2.8.1",
     "fs-extra": "^0.26.2",
-    "leaflet-jsonstyles": "git+https://github.com/ebrelsford/Leaflet.jsonstyles.git",
+    "leaflet-jsonstyles": "^0.0.2",
     "mustache": "^2.2.0",
     "temp": "^0.8.3"
   },
