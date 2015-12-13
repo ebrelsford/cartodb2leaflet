@@ -29,7 +29,7 @@
   "dependencies": {
     "async": "^1.5.0",
     "cartocss2leaflet": "git+https://github.com/ebrelsford/cartocss2leaflet.git",
-    "cartodb-export": "git+https://github.com/ebrelsford/cartodb-export.git",
+    "cartodb-export": "^0.2.0",
     "commander": "^2.8.1",
     "fs-extra": "^0.26.2",
     "leaflet-jsonstyles": "git+https://github.com/ebrelsford/Leaflet.jsonstyles.git",
