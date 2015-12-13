@@ -1,6 +1,6 @@
 {
   "name": "cartodb2leaflet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Convert CartoDB visualization to Leaflet",
   "main": "index.js",
   "scripts": {
